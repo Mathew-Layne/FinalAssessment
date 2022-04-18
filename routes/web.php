@@ -31,6 +31,16 @@ Route::view('about', 'about')->name('about');
 Route::view('service', 'service')->name('service');
 Route::view('contact', 'contact')->name('contact');
 Route::view('vehicles', 'vehicles')->name('vehicles');
-Route::view('vehicle/details', 'vehicle_details')->name('vehicle.details');
+Route::view('vehicle/details/{id?}', 'vehicle_details')->name('vehicle.details');
+
+Route::view('/admin/dashboard', 'admin.dashboard')->name('admin');
+Route::view('/admin/vehicle', 'admin.vehicle')->name('admin.vehicle');
+Route::view('/admin/reservation', 'admin.reservation')->name('admin.reservation');
+Route::view('/admin/addon', 'admin.addon')->name('admin.addon');
+
+
+
+Route::view('/user/dashboard', 'user.dashboard')->name('user');
+Route::view('/user/reservation', 'user.reservation')->name('user.reservation');
 
 require __DIR__.'/auth.php';

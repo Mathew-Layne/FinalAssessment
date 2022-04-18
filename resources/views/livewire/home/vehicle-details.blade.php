@@ -17,10 +17,10 @@
             <div class="w-9/12 md:flex justify-center gap-6">
                 <div class="md:w-4/6 drop-shadow-xl">
                     <div class="border-l-4 border-red-500 py-6 pl-10 text-black font-bold bg-top text-2xl bg-cover bg-[url('/img/lines.jpg')] mb-5">
-                        Vehicle Name
+                        {{ $details->vehicleBrand->name ." ". $details->name }}
                     </div>
                     <div class="w-full border-2 shadow p-10">
-                        <img class="w-full" src="{{ url('/img/newcar3.jpg') }}" alt="">
+                        <img class="w-full" src="{{ url($details->img) }}" alt="">
                     </div>
                     <div class="">
                         <div class="border-l-4 border-red-500 py-3 pl-10 text-black font-bold bg-top text-2xl bg-cover bg-[url('/img/lines.jpg')] my-5">
@@ -38,7 +38,7 @@
     
                 <div class="md:w-2/6 md:h-4/6 bg-gray-50 md:pb-10 drop-shadow-xl">
                     <div class="bg-black text-white font-bold text-center py-5">
-                        $200/ per day
+                        ${{ $details->price }}/ day
                     </div>
                     <div class="w-full py-10 px-10">
                         <form class="" action="">
@@ -73,45 +73,18 @@
                             </div>
 
                             <div>
+                                @foreach ($addons as $addon)
+                                    
                                 <div class="flex w-full justify-between border-b font-bold items-center mb-5">
                                     <div class="flex ">
-                                        <input class="mr-2 rounded" type="checkbox" name="" id="">
-                                        <h3>CAR SAET</h3>
+                                        <input class="mr-2 rounded" type="checkbox" name="addon{{ $addon->id }}">
+                                        <h3>{{ $addon->name }}</h3>
                                     </div>
                                     <div>
-                                        <h4 class="text-red-500">$25/Day</h4>
+                                        <h4 class="text-red-500">${{ $addon->price }}/Day</h4>
                                     </div>
-                                </div>
-
-                                <div class="flex w-full justify-between border-b font-bold items-center mb-5">
-                                    <div class="flex ">
-                                        <input class="mr-2 rounded" type="checkbox" name="" id="">
-                                        <h3>DRIVER</h3>
-                                    </div>
-                                    <div>
-                                        <h4 class="text-red-500">$100/Day</h4>
-                                    </div>
-                                </div>
-
-                                <div class="flex w-full justify-between border-b font-bold items-center mb-5">
-                                    <div class="flex ">
-                                        <input class="mr-2 rounded" type="checkbox" name="" id="">
-                                        <h3>WIFI ACCESS</h3>
-                                    </div>
-                                    <div>
-                                        <h4 class="text-red-500">$15/Day</h4>
-                                    </div>
-                                </div>
-
-                                <div class="flex w-full justify-between border-b font-bold items-center mb-10">
-                                    <div class="flex ">
-                                        <input class="mr-2 rounded" type="checkbox" name="" id="">
-                                        <h3>GPS NAVIGATION</h3>
-                                    </div>
-                                    <div>
-                                        <h4 class="text-red-500">$5/Day</h4>
-                                    </div>
-                                </div>
+                                </div> 
+                                @endforeach
 
                                 <div class="">
                                     <button class="bg-red-500 text-white py-4 w-full border-r-8 border-gray-600">Reserve Now</button>
