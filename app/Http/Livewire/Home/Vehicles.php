@@ -10,8 +10,8 @@ class Vehicles extends Component
 {
     public function render()
     {
-        // $vehicleList = Http::get('https://6257865374007111adf871d6.mockapi.io/v1/vehicles')->object();
-        $vehicleList = Vehicle::all();
+        $vehicleList = Http::get('http://10.44.16.100:8080/api/vehicles')->json();
+        // $vehicleList = Vehicle::all();
         // dd($vehicleList);
         return view('livewire.home.vehicles', ['vehicleList' => $vehicleList]);
     }

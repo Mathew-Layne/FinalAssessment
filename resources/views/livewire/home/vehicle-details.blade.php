@@ -36,34 +36,51 @@
     
                 </div>
     
-                <div class="md:w-2/6 md:h-4/6 bg-gray-50 md:pb-10 drop-shadow-xl">
+                {{-- {{ dd($details) }} --}}
+                <div class="md:w-2/6 md:h-fit bg-gray-50 md:pb-10 drop-shadow-xl">
                     <div class="bg-black text-white font-bold text-center py-5">
                         ${{ $details->price }}/ day
                     </div>
-                    <div class="w-full py-10 px-10">
-                        <form class="" action="">
+                    <div class="w-full pt-10 px-10">
+                        <form class="" wire:submit.prevent="reserveNow()">
                             <div class="mb-2">
                                 <label class="font-bold text-sm text-gray-700" for="">PICK-UP LOCATION</label>
-                                <select class="w-full my-2 bg-gray-300 border-none" name="" id="">
+                                <select wire:model="pickupLocation" class="w-full my-2 bg-gray-300 border-none">
                                     <option value="">Select Location</option>
+                                    <option value="Kingston">Kingston</option>
+                                    <option value="Norman Manley Airport">Norman Manley Airport</option>
+                                    <option value="St. Andrew">St. Andrew</option>
+                                    <option value="St. Catherine">St. Catherine</option>
                                 </select>
+                                @error("pickupLocation")<span class="text-xs text-red-600">{{ $message }}</span>@enderror
+
                             </div>
     
                             <div class="mb-2">
                                 <label class="font-bold text-sm text-gray-700" for="">DROP-OFF LOCATION</label>
-                                <select class="w-full my-2 bg-gray-300 border-none" name="" id="">
+                                <select wire:model="dropoffLocation" class="w-full my-2 bg-gray-300 border-none">
                                     <option value="">Select Location</option>
+                                    <option value="Kingston">Kingston</option>
+                                    <option value="Norman Manley Airport">Norman Manley Airport</option>
+                                    <option value="St. Andrew">St. Andrew</option>
+                                    <option value="St. Catherine">St. Catherine</option>
                                 </select>
+                                @error("dropoffLocation")<span class="text-xs text-red-600">{{ $message }}</span>@enderror
+
                             </div>
     
                             <div class="mb-2">
-                                <label class="font-bold text-sm text-gray-700" for="">PICK-UP LOCATION</label>
-                                <input class="w-full my-2 bg-gray-300 border-none" type="date" name="" id="">
+                                <label class="font-bold text-sm text-gray-700" for="">PICK-UP DATE</label>
+                                <input wire:model="pickupDate" class="w-full my-2 bg-gray-300 border-none" type="date" min="{{ date('Y-m-d') }}">
+                                @error("pickupDate")<span class="text-xs text-red-600">{{ $message }}</span>@enderror
+
                             </div>
     
                             <div class="mb-2">
-                                <label class="font-bold text-sm text-gray-700" for="">PICK-UP LOCATION</label>
-                                <input class="w-full my-2 bg-gray-300 border-none" type="date" name="" id="">
+                                <label class="font-bold text-sm text-gray-700" for="">DROP-OFF DATE</label>
+                                <input wire:model="dropoffDate" class="w-full my-2 bg-gray-300 border-none" type="date" min="{{ date('Y-m-d') }}">
+                                @error("dropoffDate")<span class="text-xs text-red-600">{{ $message }}</span>@enderror
+
                             </div>
 
                             <div>
@@ -77,7 +94,7 @@
                                     
                                 <div class="flex w-full justify-between border-b font-bold items-center mb-5">
                                     <div class="flex ">
-                                        <input class="mr-2 rounded" type="checkbox" name="addon{{ $addon->id }}">
+                                        <input wire:model="addonArr" class="mr-2 rounded" type="checkbox" value="{{ $addon->id }}">
                                         <h3>{{ $addon->name }}</h3>
                                     </div>
                                     <div>

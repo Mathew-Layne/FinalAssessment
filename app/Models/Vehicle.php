@@ -20,4 +20,16 @@ class Vehicle extends Model
     public function reservation(){
         return $this->hasMany(Reservation::class);
     }
+
+    protected $fillable =[
+        'name',
+        'transmission',
+        'mileage', 
+        'fuel', 
+        'year', 
+        'img', 
+        'price',
+        'vehicle_brand_id', 
+        'vehicle_category_id'  
+      ];
 }

@@ -62,10 +62,7 @@ class AuthenticatedSessionController extends Controller
     }
 
     public function handleGoogleCallback(){
-        $user = Socialite::driver('google')->user();
-
-
-        // dd($user->user);
+        $user = Socialite::driver('google')->user();      
 
         $this->registerOrLoginUser($user);
 
@@ -89,5 +86,16 @@ class AuthenticatedSessionController extends Controller
 
         return redirect()->route('dashboard');
 
+    }
+
+    public function logout(Request $request){
+        
+        Auth::logout();
+    
+        $request->session()->invalidate();
+    
+        $request->session()->regenerateToken();
+    
+        return redirect('/');
     }
 }

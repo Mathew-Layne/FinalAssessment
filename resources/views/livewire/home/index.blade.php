@@ -10,25 +10,28 @@
                         <h1 class="text-white font-bold text-lg">Cheapest car rental rates island wide</h1>
                     </div>
                     <div class="mt-10">
-                        <form class="md:flex" action="">
+                        <form class="md:flex" wire:submit.prevent="search()">
                             <div class="mx-2">
-                                <input type="date">
+                                <input type="date" min="{{ date('Y-m-d') }}">
                                 <label class="text-gray-200 block md:text-left text-sm mt-2" for="">PICK-UP DATE</label>
                             </div>
     
                             <div class="mx-2">
-                                <input type="date">
+                                <input type="date" min="{{ date('Y-m-d') }}">
                                 <label class="text-gray-200 block md:text-left text-sm mt-2" for="">DROP-OFF DATE</label>
                             </div>
     
                             <div class="mx-2">
-                                <select name="" id="">
+                                <select wire:model="vhclSearch">
                                     <option value="">Select Vehicle Type</option>
+                                    @foreach($categories as $cat)
+                                    <option value="{{ $cat['id'] }}">{{ $cat['name'] }}</option>
+                                    @endforeach
                                 </select>
                                 <label class="text-gray-200 block md:text-left text-sm mt-2" for="">VEHICLE TYPE</label>
                             </div>
                             <div class="mx-2">
-                                <button class="bg-red-600 text-white py-2 px-8 border-r-4 border-gray-500 font-bold">FIND IT NOW</button>
+                               <button class="bg-red-600 text-white py-2 px-8 border-r-4 border-gray-500 font-bold">FIND IT NOW</button>
                             </div>
                         </form>
                     </div>
@@ -78,7 +81,9 @@
                 <img src="{{ url('/img/cars1.png') }}" alt="car1">
             </div>
         </section>
-    
+        
+        {{-- {{ dd($features) }} --}}
+       
         <section class="bg-gray-200">
     
             <section class="w-5/6 m-auto text-gray-600 body-font">
@@ -88,63 +93,51 @@
                         <span class="inline-block h-1 w-40 rounded bg-red-500 mb-6"></span>
     
                     </div>
-                  <div class="flex m-4">
-                    <div class="lg:w-1/3 md:w-1/2 w-full md:mx-2 shadow-md hover:shadow-xl duration-200 hover:-translate-y-0.5 hover:translate-x-0.5 border border-gray-300">
-                      <a class="block relative h-60 rounded overflow-hidden border-2">
-                        <img alt="ecommerce" class="object-cover object-center w-full h-full block" src="{{ url('/img/newcar1.jpg') }}">
+                  <div class="md:flex m-4 gap-4">
+                    
+                    @foreach ($features as $newCar)
+                    @if ($newCar->status == "Unavailable")
+                    <div class="lg:w-96 md:w-1/2 w-full mb-5 shadow-md hover:shadow-xl duration-200 hover:-translate-y-0.5 hover:translate-x-0.5 border border-gray-300">
+                        <div class="block relative h-60 rounded overflow-hidden border-2">
+                        <img alt="ecommerce" class="object-cover object-center w-full h-full block" src="{{ $newCar->img }}">
+                        </div>
+                        <div class="text-center py-2">
+                        <h3 class="text-gray-500 text-xs tracking-widest title-font mb-1">{{ $newCar->vehicleCategory->name }}</h3>
+                        <h2 class="text-gray-900 title-font text-2xl font-bold">{{ $newCar->vehicleBrand->name ." ". $newCar->name }}</h2>
+                        <p class="mt-1 font-semibold">${{ $newCar->price }}/day</p>
+                        <button class="py-2 px-3 bg-gray-600 text-white my-2 hover:bg-gray-700">Unavailable</button>
+                        </div>
+                        <div class="flex w-full">
+                        <div class="w-4/12 border border-gray-300 text-center py-1"><i class="fa-solid fa-car mr-1"></i>{{ $newCar->year }}</div>
+                        <div class="w-4/12 border border-gray-300 text-center py-1"><i class="fa-solid fa-gear mr-1"></i>{{ $newCar->transmission }}</div>
+                        <div class="w-4/12 border border-gray-300 text-center py-1"><i class="fa-solid fa-road mr-1"></i>{{ $newCar->mileage }}</div>
+                        <div class="w-4/12 border border-gray-300 text-center py-1"><i class="fa-solid fa-gas-pump mr-1"></i>{{ $newCar->fuel }}</div>
+  
+                        </div>
+                    </div>  
+                    @else
+                        
+                    <div class="lg:w-96 md:w-1/2 w-full mb-5 shadow-md hover:shadow-xl duration-200 hover:-translate-y-0.5 hover:translate-x-0.5 border border-gray-300">
+                      <a href="{{ route('vehicle.details', $newCar->id) }}" class="block relative h-60 rounded overflow-hidden border-2">
+                      <img alt="ecommerce" class="object-cover object-center w-full h-full block" src="{{ $newCar->img }}">
                       </a>
                       <div class="text-center py-2">
-                        <h3 class="text-gray-500 text-xs tracking-widest title-font mb-1">SEDAN</h3>
-                        <h2 class="text-gray-900 title-font text-2xl font-bold">Toyota Corolla</h2>
-                        <p class="mt-1 font-semibold">$50.00/per day</p>
-                        <button class="py-2 px-3 bg-red-600 text-white my-2 hover:bg-red-700">Reserve</button>
+                      <h3 class="text-gray-500 text-xs tracking-widest title-font mb-1">{{ $newCar->vehicleCategory->name }}</h3>
+                      <h2 class="text-gray-900 title-font text-2xl font-bold">{{ $newCar->vehicleBrand->name ." ". $newCar->name }}</h2>
+                      <p class="mt-1 font-semibold">${{ $newCar->price }}/day</p>
+                      <a href="{{ route('vehicle.details', $newCar->id) }}"><button class="py-2 px-3 bg-red-600 text-white my-2 hover:bg-red-700">Reserve</button></a>
                       </div>
                       <div class="flex w-full">
-                        <div class="w-4/12 border border-gray-300 text-center py-1"><i class="fa-solid fa-car mr-1"></i>2022</div>
-                        <div class="w-4/12 border border-gray-300 text-center py-1"><i class="fa-solid fa-gear mr-1"></i>Manual</div>
-                        <div class="w-4/12 border border-gray-300 text-center py-1"><i class="fa-solid fa-road mr-1"></i>6121</div>
-                        <div class="w-4/12 border border-gray-300 text-center py-1"><i class="fa-solid fa-gauge-max mr-1"></i>Diesel</div>
+                      <div class="w-4/12 border border-gray-300 text-center py-1"><i class="fa-solid fa-car mr-1"></i>{{ $newCar->year }}</div>
+                      <div class="w-4/12 border border-gray-300 text-center py-1"><i class="fa-solid fa-gear mr-1"></i>{{ $newCar->transmission }}</div>
+                      <div class="w-4/12 border border-gray-300 text-center py-1"><i class="fa-solid fa-road mr-1"></i>{{ $newCar->mileage }}</div>
+                      <div class="w-4/12 border border-gray-300 text-center py-1"><i class="fa-solid fa-gas-pump mr-1"></i>{{ $newCar->fuel }}</div>
 
                       </div>
-                    </div>
-
-                    <div class="lg:w-1/3 md:w-1/2 w-full shadow-md hover:shadow-xl md:mx-2 border duration-200 hover:-translate-y-0.5 hover:translate-x-0.5 border-gray-300">
-                      <a class="block relative h-60 rounded overflow-hidden border-2">
-                        <img alt="ecommerce" class="object-cover object-center w-full h-full block" src="{{ url('/img/newcar2.jpg') }}">
-                      </a>
-                      <div class="text-center py-2">
-                        <h3 class="text-gray-500 text-xs tracking-widest title-font mb-1">SUV</h3>
-                        <h2 class="text-gray-900 title-font text-2xl font-bold">Ford Edge</h2>
-                        <p class="mt-1 font-semibold">$70.00/per day</p>
-                        <button class="py-2 px-3 bg-red-600 text-white my-2 hover:bg-red-700">Reserve</button>
-                      </div>
-                      <div class="flex w-full">
-                        <div class="w-4/12 border border-gray-300 text-center py-1"><i class="fa-solid fa-car mr-1"></i>2022</div>
-                        <div class="w-4/12 border border-gray-300 text-center py-1"><i class="fa-solid fa-gear mr-1"></i>Manual</div>
-                        <div class="w-4/12 border border-gray-300 text-center py-1"><i class="fa-solid fa-road mr-1"></i>12530</div>
-                        <div class="w-4/12 border border-gray-300 text-center py-1"><i class="fa-solid fa-gauge-max mr-1"></i>Diesel</div>
-
-                      </div>
-                    </div>
-
-                    <div class="lg:w-1/3 md:w-1/2 w-full shadow-md hover:shadow-xl duration-200 hover:-translate-y-0.5 hover:translate-x-0.5 md:mx-2 border border-gray-300">
-                      <a class="block relative h-60 rounded overflow-hidden border-2">
-                        <img alt="ecommerce" class="object-cover object-center w-full h-full block" src="{{ url('/img/newcar3.jpg') }}">
-                      </a>
-                      <div class="text-center py-2">
-                        <h3 class="text-gray-500 text-xs tracking-widest title-font mb-1">SEDAN</h3>
-                        <h2 class="text-gray-900 title-font text-2xl font-bold">Volkswagen Passat</h2>
-                        <p class="mt-1 font-semibold">$60.00/per day</p>
-                        <button class="py-2 px-3 bg-red-600 text-white my-2 hover:bg-red-700">Reserve</button>
-                      </div>
-                      <div class="flex w-full">
-                        <div class="w-4/12 border border-gray-300 text-center py-1"><i class="fa-solid fa-car mr-1"></i>2022</div>
-                        <div class="w-4/12 border border-gray-300 text-center py-1"><i class="fa-solid fa-gear mr-1"></i>Manual</div>
-                        <div class="w-4/12 border border-gray-300 text-center py-1"><i class="fa-solid fa-road mr-1"></i>21565</div>
-                        <div class="w-4/12 border border-gray-300 text-center py-1"><i class="fa-solid fa-gauge-max mr-1"></i>Diesel</div>
-
-                      </div>
-                    </div>                 
+                  </div> 
+                    @endif
+                    
+                    @endforeach
                     
                   </div>
                 </div>
@@ -155,7 +148,7 @@
             <div class="h-full bg-black bg-opacity-80 flex justify-center items-center">
                 <div class="text-center">
                     <h2 class="text-white text-3xl mb-3">Upto 35% Discounts & Special Offers</h2>
-                    <h1 class="text-white text-7xl mb-3 font-bold">Rent a Car for 7 Days</h1>
+                    <h1 class="text-white text-6xl md:text-7xl mb-3 font-bold">Rent a Car for 7 Days</h1>
                     <h2 class="text-white text-xl">and get 2 days extra absolutely FREE</h2>
                 </div>            
             </div>

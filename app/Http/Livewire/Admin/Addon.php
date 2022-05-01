@@ -8,7 +8,9 @@ use Livewire\Component;
 class Addon extends Component
 {
     public $addonForm = false;
-    public $addon;
+    public $deleteAlert = false;
+    public $updateAddonForm = false;
+    public $addon, $addonId;
 
     public function addAddon(){
         $this->validate([
@@ -23,6 +25,30 @@ class Addon extends Component
 
         $this->addonForm = false;
 
+    }
+
+    public function getId($id){
+        $this->updateAddonForm = true;
+        $this->addonId = $id;
+
+        $data = ModelsAddon::where('id', $id)->first();
+        $this->addon['name'] = $data->name;
+        $this->addon['price'] = $data->price;
+    }
+
+    public function updateAddon(){
+        
+        ModelsAddon::where('id', $this->addonId)->update([
+            'name' => $this->addon['name'],
+            'price' => $this->addon['price'],
+        ]);
+
+        $this->updateAddonForm = false;
+    }
+
+    public function deleteAddon($id){
+        ModelsAddon::find($id)->delete();
+        $this->deleteAlert = true;
     }
 
     public function render()

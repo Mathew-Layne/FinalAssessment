@@ -166,11 +166,11 @@
                     class="flex items-center justify-start md:justify-center pl-3 w-14 md:w-64 h-14 bg-blue-800 dark:bg-gray-800 border-none">
                     <img class="w-7 h-7 md:w-10 md:h-10 mr-2 rounded-full overflow-hidden"
                         src="https://therminic2018.eu/wp-content/uploads/2018/07/dummy-avatar.jpg" />
-                    <span class="hidden md:block">ADMIN</span>
+                    <span class="hidden md:block">User</span>
                 </div>
                 <div class="flex justify-between items-center h-14 bg-blue-800 dark:bg-gray-800 header-right">
 
-                    <Span>Hi, <span class="font-bold text-lg">{{ Auth::user()->name }}</span></Span>
+                    <Span>Hi, <span class="font-bold text-lg">{{ Auth::user()->first_name }}</span></Span>
                     {{-- <div
                         class="bg-white rounded flex items-center w-full max-w-xl mr-4 p-2 shadow-sm border border-gray-200">
                         <button class="outline-none focus:outline-none">
@@ -238,7 +238,7 @@
                             </div>
                         </li>
                         <li>
-                            <a href="{{ route('dashboard') }}"
+                            <a href="{{ route('user') }}"
                                 class="relative flex flex-row items-center h-11 focus:outline-none hover:bg-blue-800 dark:hover:bg-gray-600 text-white-600 hover:text-white-800 border-l-4 border-transparent hover:border-blue-500 dark:hover:border-gray-800 pr-6">
                                 <span class="inline-flex justify-center items-center ml-4">
                                     <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"
@@ -252,88 +252,17 @@
                             </a>
                         </li>
                         <li>
-                            <a href="#"
-                                class="relative flex flex-row items-center h-11 focus:outline-none hover:bg-blue-800 dark:hover:bg-gray-600 text-white-600 hover:text-white-800 border-l-4 border-transparent hover:border-blue-500 dark:hover:border-gray-800 pr-6">
-                                <span class="inline-flex justify-center items-center ml-4">
-                                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"
-                                        xmlns="http://www.w3.org/2000/svg">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                            d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9">
-                                        </path>
-                                    </svg>
-                                </span>
-                                <span class="ml-2 text-sm tracking-wide truncate">Notifications</span>
-                                <span
-                                    class="hidden md:block px-2 py-0.5 ml-auto text-xs font-medium tracking-wide text-blue-500 bg-indigo-50 rounded-full">New</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="{{ route('clients') }}"
-                                class="relative flex flex-row items-center h-11 focus:outline-none hover:bg-blue-800 dark:hover:bg-gray-600 text-white-600 hover:text-white-800 border-l-4 border-transparent hover:border-blue-500 dark:hover:border-gray-800 pr-6">
-                                <span class="inline-flex justify-center items-center ml-4">
-                                    <i class="far fa-users-crown"></i>
-                                </span>
-                                <span class="ml-2 text-sm tracking-wide truncate">Clients</span>
-                                
-                            </a>
-                        </li>
-                        <li>
-                            <a href="{{ route('services') }}"
-                                class="relative flex flex-row items-center h-11 focus:outline-none hover:bg-blue-800 dark:hover:bg-gray-600 text-white-600 hover:text-white-800 border-l-4 border-transparent hover:border-blue-500 dark:hover:border-gray-800 pr-6">
-                                <span class="inline-flex justify-center items-center ml-4">
-                                    <i class="fad fa-spa"></i>
-                                </span>
-                                <span class="ml-2 text-sm tracking-wide truncate">Services</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="{{ route('appointments') }}"
+                            <a href="{{ route('user.reservation') }}"
                                 class="relative flex flex-row items-center h-11 focus:outline-none hover:bg-blue-800 dark:hover:bg-gray-600 text-white-600 hover:text-white-800 border-l-4 border-transparent hover:border-blue-500 dark:hover:border-gray-800 pr-6">
                                 <span class="inline-flex justify-center items-center ml-4">
                                     <i class="far fa-calendar-check"></i>
                                 </span>
-                                <span class="ml-2 text-sm tracking-wide truncate">Appointments</span>
-                                
+                                <span class="ml-2 text-sm tracking-wide truncate">Reservation</span>
+                                <span
+                                    class="hidden md:block px-2 py-0.5 ml-auto text-xs font-medium tracking-wide text-blue-500 bg-indigo-50 rounded-full">New</span>
                             </a>
                         </li>
-                        <li>
-                            <a href="{{ route('products') }}"
-                                class="relative flex flex-row items-center h-11 focus:outline-none hover:bg-blue-800 dark:hover:bg-gray-600 text-white-600 hover:text-white-800 border-l-4 border-transparent hover:border-blue-500 dark:hover:border-gray-800 pr-6">
-                                <span class="inline-flex justify-center items-center ml-4">
-                                    <i class="far fa-box-full"></i>
-                                </span>
-                                <span class="ml-2 text-sm tracking-wide truncate">Products</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="{{ route('sales') }}"
-                                class="relative flex flex-row items-center h-11 focus:outline-none hover:bg-blue-800 dark:hover:bg-gray-600 text-white-600 hover:text-white-800 border-l-4 border-transparent hover:border-blue-500 dark:hover:border-gray-800 pr-6">
-                                <span class="inline-flex justify-center items-center ml-4">
-                                    <i class="far fa-credit-card"></i>
-                                </span>
-                                <span class="ml-2 text-sm tracking-wide truncate">Sales</span>
-                                
-                            </a>
-                        </li>
-                        <li>
-                            <a href="{{ route('product.sales') }}"
-                                class="relative flex flex-row items-center h-11 focus:outline-none hover:bg-blue-800 dark:hover:bg-gray-600 text-white-600 hover:text-white-800 border-l-4 border-transparent hover:border-blue-500 dark:hover:border-gray-800 pr-6">
-                                <span class="inline-flex justify-center items-center ml-4">
-                                    <i class="far fa-usd-circle"></i>
-                                </span>
-                                <span class="ml-2 text-sm tracking-wide truncate">Product Sales</span>
-                        
-                            </a>
-                        </li>
-                        <li>
-                            <a href="{{ route('employees') }}"
-                                class="relative flex flex-row items-center h-11 focus:outline-none hover:bg-blue-800 dark:hover:bg-gray-600 text-white-600 hover:text-white-800 border-l-4 border-transparent hover:border-blue-500 dark:hover:border-gray-800 pr-6">
-                                <span class="inline-flex justify-center items-center ml-4">
-                                    <i class="fal fa-user-nurse"></i>
-                                </span>
-                                <span class="ml-2 text-sm tracking-wide truncate">Employees</span>
-                            </a>
-                        </li>
+                                    
                         <li class="px-5 hidden md:block">
                             <div class="flex flex-row items-center mt-5 h-8">
                                 <div class="text-sm font-light tracking-wide text-gray-400 uppercase">Settings</div>
@@ -370,7 +299,7 @@
                             </a>
                         </li>
                     </ul>
-                    <p class="mb-14 px-5 py-3 hidden md:block text-center text-xs">Copyright @2021</p>
+                    <p class="mb-14 px-5 py-3 hidden md:block text-center text-xs">Copyright @2022</p>
                 </div>
             </div>
             <!-- ./Sidebar -->

@@ -16,4 +16,9 @@ class RentedAddon extends Model
     public function reservation(){
         return $this->belongsTo(Reservation::class);
     }
+
+    protected $fillable =[
+        'reservation_id',
+        'addon_id'
+    ];
 }

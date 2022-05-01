@@ -170,7 +170,7 @@
                 </div>
                 <div class="flex justify-between items-center h-14 bg-blue-800 dark:bg-gray-800 header-right">
 
-                    <Span>Hi, <span class="font-bold text-lg">Name Goes Here</span></Span>
+                    <Span>Hi, <span class="font-bold text-lg">{{ Auth::user()->first_name }}</span></Span>
                     {{-- <div
                         class="bg-white rounded flex items-center w-full max-w-xl mr-4 p-2 shadow-sm border border-gray-200">
                         <button class="outline-none focus:outline-none">
@@ -204,7 +204,7 @@
                             <div class="block w-px h-6 mx-3 bg-gray-400 dark:bg-gray-700"></div>
                         </li>
                         <li>
-                            <form method="post" action="" >
+                            <form method="post" action="{{ route('logout') }}" >
                                 @csrf
                                 <button type="submit" class="flex items-center mr-4 hover:text-blue-100">
                             
@@ -286,6 +286,15 @@
                                 <span class="ml-2 text-sm tracking-wide truncate">Addons</span>
                             </a>
                         </li>
+                        <li>
+                            <a href="{{ route('admin.users') }}"
+                                class="relative flex flex-row items-center h-11 focus:outline-none hover:bg-blue-800 dark:hover:bg-gray-600 text-white-600 hover:text-white-800 border-l-4 border-transparent hover:border-blue-500 dark:hover:border-gray-800 pr-6">
+                                <span class="inline-flex justify-center items-center ml-4">
+                                    <i class="fal fa-user-nurse"></i>
+                                </span>
+                                <span class="ml-2 text-sm tracking-wide truncate">Users</span>
+                            </a>
+                        </li>
                         <li class="px-5 hidden md:block">
                             <div class="flex flex-row items-center mt-5 h-8">
                                 <div class="text-sm font-light tracking-wide text-gray-400 uppercase">Settings</div>
@@ -322,7 +331,7 @@
                             </a>
                         </li>
                     </ul>
-                    <p class="mb-14 px-5 py-3 hidden md:block text-center text-xs">Copyright @2021</p>
+                    <p class="mb-14 px-5 py-3 hidden md:block text-center text-xs">Copyright @2022</p>
                 </div>
             </div>
             <!-- ./Sidebar -->

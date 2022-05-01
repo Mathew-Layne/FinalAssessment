@@ -17,6 +17,7 @@
         <script src="{{ asset('js/app.js') }}" defer></script>
         {{-- <link href="https://kit-pro.fontawesome.com/releases/v5.15.4/css/pro.min.css" rel="stylesheet"> --}}
         <link rel="stylesheet" href="https://site-assets.fontawesome.com/releases/v6.1.1/css/all.css">
+        <script src="//unpkg.com/alpinejs" defer></script>
         @livewireStyles
     </head>
     <body>

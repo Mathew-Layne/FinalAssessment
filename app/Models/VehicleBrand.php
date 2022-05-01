@@ -12,4 +12,8 @@ class VehicleBrand extends Model
     public function vehicle(){
         return $this->hasMany(Vehicle::class);
     }
+
+    protected $fillable = [
+        'name'
+    ];
 }

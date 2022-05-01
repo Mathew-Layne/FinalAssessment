@@ -13,8 +13,13 @@
             </ul>
         </div>
         <div class="md:flex">
+            @if(Auth::check())
+            <h1 class="px-3 font-bold text-md"><a href="{{ route('dashboard') }}">Dashboard</a></h1>
+            
+            @else
             <h1 class="px-3 font-bold text-md"><a href="{{ route('register') }}">Register</a></h1>
             <h1 class="pl-4 font-bold text-md"><a href="{{ route('login') }}">Login</a></h1>
+            @endif
         </div>
         
     </nav> 

@@ -22,7 +22,7 @@ Route::get('/', function () {
 
 Route::get('/dashboard', function () {
     return view('dashboard');
-})->middleware(['auth'])->name('dashboard');
+})->middleware(['auth', 'dashRedirect'])->name('dashboard');
 
 Route::get('login/google', [AuthenticatedSessionController::class, 'redirectToGoogle'])->name('login.google');
 Route::get('login/google/callback', [AuthenticatedSessionController::class, 'handleGoogleCallback']);
@@ -31,16 +31,29 @@ Route::view('about', 'about')->name('about');
 Route::view('service', 'service')->name('service');
 Route::view('contact', 'contact')->name('contact');
 Route::view('vehicles', 'vehicles')->name('vehicles');
-Route::view('vehicle/details/{id?}', 'vehicle_details')->name('vehicle.details');
+Route::view('vehicle/search', 'vehicle_search')->name('vehicle.search');
 
-Route::view('/admin/dashboard', 'admin.dashboard')->name('admin');
-Route::view('/admin/vehicle', 'admin.vehicle')->name('admin.vehicle');
-Route::view('/admin/reservation', 'admin.reservation')->name('admin.reservation');
-Route::view('/admin/addon', 'admin.addon')->name('admin.addon');
+Route::middleware(['auth'])->group(function(){
+    Route::view('vehicle/details/{id?}', 'vehicle_details')->name('vehicle.details');
+    Route::view('checkout', 'checkout')->name('checkout');
+    Route::post('logout', [AuthenticatedSessionController::class, 'logout'])->name('logout');
 
+});
 
+Route::middleware(['auth', 'admin'])->group(function(){
+    
+    Route::view('/admin/dashboard', 'admin.dashboard')->name('admin');
+    Route::view('/admin/vehicle', 'admin.vehicle')->name('admin.vehicle');
+    Route::view('/admin/reservation', 'admin.reservation')->name('admin.reservation');
+    Route::view('/admin/addon', 'admin.addon')->name('admin.addon');
+    Route::view('/admin/users', 'admin.users')->name('admin.users');
+});
 
-Route::view('/user/dashboard', 'user.dashboard')->name('user');
-Route::view('/user/reservation', 'user.reservation')->name('user.reservation');
+Route::middleware(['auth', 'member'])->group(function(){
+    
+    Route::view('/user/dashboard', 'user.dashboard')->name('user');
+    Route::view('/user/reservation', 'user.reservation')->name('user.reservation');
+});
+
 
 require __DIR__.'/auth.php';

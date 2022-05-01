@@ -21,4 +21,12 @@ class Reservation extends Model
         return $this->hasMany(RentedAddon::class);
     }
 
+    protected $fillable =[
+        'pickup_location',
+        'pickup_date',
+        'dropoff_location',
+        'dropoff_date',
+        'user_id',
+        'vehicle_id'
+    ];
 }

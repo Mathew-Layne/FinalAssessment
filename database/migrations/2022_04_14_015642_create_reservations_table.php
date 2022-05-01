@@ -19,6 +19,8 @@ return new class extends Migration
             $table->date('pickup_date');
             $table->string('dropoff_location');
             $table->date('dropoff_date');
+            $table->string('cart_status')->default('Cart');
+            $table->string('reserve_status')->default('Pending');
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
             $table->foreignId('vehicle_id')->constrained()->onDelete('cascade');
             $table->timestamps();

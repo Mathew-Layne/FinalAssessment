@@ -12,4 +12,9 @@ class Addon extends Model
     public function rentedAddon(){
         return $this->hasMany(RentedAddon::class);
     }
+
+    protected $fillable =[
+        'name', 
+        'price'
+    ];
 }
