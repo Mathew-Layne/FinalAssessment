@@ -1,0 +1,95 @@
+<div>   
+   
+        <div class="w-full lg:w-6/12 px-4 mt-6">
+            <div
+                class="flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded-lg bg-blueGray-100 border-0 dark:border-gray-700 bg-gray-50 dark:text-gray-300 dark:bg-gray-800">
+                <div class="rounded-t bg-white mb-0 px-6 py-6 dark:border-gray-700 dark:text-gray-400 dark:bg-gray-800">
+                    <div class="text-center flex justify-between">
+                        <h6 class="text-blueGray-700 text-xl font-bold">
+                            Profile
+                        </h6>
+                    </div>
+                </div>
+                <div class="flex-auto px-4 lg:px-10 py-10 pt-0">
+                    
+    
+                    <form wire:submit.prevent="updateProfile()">
+                        <h6 class="text-blueGray-400 text-sm mt-3 mb-6 font-bold uppercase">
+                            Profile Details
+                        </h6>
+    
+                        <div class="flex flex-wrap">
+    
+                            <div class="flex flex-wrap">
+
+                                <div class="w-full lg:w-6/12 px-4">
+                                    <div class="relative w-full mb-3">
+                                        <label class="block uppercase text-blueGray-600 text-xs font-bold mb-2">
+                                            First Name
+                                        </label>
+                                        <input type="text" placeholder="Enter First Name"
+                                            class="border-0 px-3 text-black py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                                            wire:model="profile.fname">
+                                        @error("profile.fname")<span class="text-xs text-red-600">{{ $message }}</span>@enderror
+                                    </div>
+                                </div>
+                                <div class="w-full lg:w-6/12 px-4">
+                                    <div class="relative w-full mb-3">
+                                        <label class="block uppercase text-blueGray-600 text-xs font-bold mb-2">
+                                            Last Name
+                                        </label>
+                                        <input type="text" placeholder="Enter Last Name"
+                                            class="border-0 px-3 py-3 text-black placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                                            wire:model="profile.lname">
+                                        @error("profile.lname")<span class="text-xs text-red-600">{{ $message }}</span>@enderror
+                                    </div>
+                                </div>                               
+
+                                <div class="w-full lg:w-12/12 px-4">
+                                    <div class="relative w-full mb-3">
+                                        <label class="block uppercase text-blueGray-600 text-xs font-bold mb-2">
+                                            Email
+                                        </label>
+                                        <input
+                                            class="border-0 px-3 py-3 text-black placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                                            disabled
+                                            wire:model="profile.email" placeholder="Enter Email">
+                                        @error("profile.email")<span class="text-xs text-red-600">{{
+                                            $message }}</span>@enderror
+                                    </div>
+                                </div>
+    
+                                <div class="w-full lg:w-6/12 px-4">
+                                    <div class="relative w-full mb-3">
+                                        <label class="block uppercase text-blueGray-600 text-xs font-bold mb-2">
+                                            Phone Number
+                                        </label>
+                                        <input type="number" placeholder="Enter Phone Number"
+                                            class="border-0  px-3 text-black py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                                            wire:model="profile.phone">
+                                        @error("profile.phone")<span class="text-xs text-red-600">{{ $message }}</span>@enderror
+                                    </div>
+                                </div>
+                                <div class="w-full lg:w-6/12 px-4">
+                                    <div class="relative w-full mb-3">
+                                        <label class="block uppercase text-blueGray-600 text-xs font-bold mb-2">
+                                            Password
+                                        </label>
+                                        <input type="password" placeholder="Enter Last Name"
+                                            class="border-0 px-3 py-3 text-black placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                                            wire:model="profile.password">
+                                    </div>
+                                </div>                                                              
+    
+                                <div class="ml-3 mt-3 ">
+                                    <button type="submit">Update Profile</button>
+                                </div>
+    
+                            </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    
+    
+</div>

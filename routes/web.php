@@ -1,6 +1,9 @@
 <?php
 
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
+use App\Models\User;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 // use Laravel\Socialite\Facades\Socialite;
 
@@ -47,13 +50,24 @@ Route::middleware(['auth', 'admin'])->group(function(){
     Route::view('/admin/reservation', 'admin.reservation')->name('admin.reservation');
     Route::view('/admin/addon', 'admin.addon')->name('admin.addon');
     Route::view('/admin/users', 'admin.users')->name('admin.users');
+    Route::view('/admin/profile', 'admin.profile')->name('admin.profile');
 });
 
 Route::middleware(['auth', 'member'])->group(function(){
     
     Route::view('/user/dashboard', 'user.dashboard')->name('user');
     Route::view('/user/reservation', 'user.reservation')->name('user.reservation');
+    Route::view('/user/profile', 'user.profile')->name('user.profile');
 });
+
+Route::get('/token/generate', function(Request $request){
+
+    $user = User::where('id', Auth::id())->first();
+
+    $token = $user->createToken('vehicle-api');
+ 
+    return ['token' => $token->plainTextToken];
+})->name('token')->middleware(['admin', 'auth']);
 
 
 require __DIR__.'/auth.php';

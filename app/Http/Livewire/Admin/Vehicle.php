@@ -28,7 +28,7 @@ class Vehicle extends Component
             'brandName' => 'required|unique:vehicle_brands,name'
         ]);
 
-        Http::post('http://10.44.16.100:8080/api/brands',[
+        Http::withToken('1|bCbuW5HR50s46gNyOM3arOtjFeeOSqi4zvPPDQXd')->post('http://10.44.16.11:8080/api/brands',[
             'name' => $this->brandName
         ]);
 
@@ -45,7 +45,7 @@ class Vehicle extends Component
             'categoryName' => 'required|unique:vehicle_categories,name'
         ]);
 
-        Http::post('http://10.44.16.100:8080/api/categories',[
+        Http::withToken('1|bCbuW5HR50s46gNyOM3arOtjFeeOSqi4zvPPDQXd')->post('http://10.44.16.11:8080/api/categories',[
             'name' => $this->categoryName
         ]);
 
@@ -71,7 +71,7 @@ class Vehicle extends Component
         $filename = $this->vehicle['img']->getClientOriginalName();        
         $filePath = $this->vehicle['img']->storeAs('public', $filename);
 
-        Http::post('http://10.44.16.100:8080/api/vehicles',[
+        Http::withToken('1|bCbuW5HR50s46gNyOM3arOtjFeeOSqi4zvPPDQXd')->post('http://10.44.16.11:8080/api/vehicles',[
             'name' => $this->vehicle['name'],
             'vehicle_brand_id' => $this->vehicle['brand'],
             'vehicle_category_id' => $this->vehicle['category'],
@@ -90,10 +90,8 @@ class Vehicle extends Component
         $this->vhclUpdateForm = true;
         $this->updateId = $id;
 
-        $currentData = Http::get('http://10.44.16.100:8080/api/vehicles/'.$id)->object();
+        $currentData = Http::withToken('1|bCbuW5HR50s46gNyOM3arOtjFeeOSqi4zvPPDQXd')->get('http://10.44.16.11:8080/api/vehicles/'.$id)->object();
         
-            // dd($currentData);
-
             $this->vehicle['name'] = $currentData->name;
             $this->vehicle['brand'] = $currentData->vehicle_brand_id;
             $this->vehicle['category'] = $currentData->vehicle_category_id;
@@ -117,7 +115,7 @@ class Vehicle extends Component
             'vehicle.fuel' => 'required',
         ]);   
         // dd($this->vehicle['name']);
-        Http::put('http://10.44.16.100:8080/api/vehicles/'.$this->updateId,[
+        Http::withToken('1|bCbuW5HR50s46gNyOM3arOtjFeeOSqi4zvPPDQXd')->put('http://10.44.16.11:8080/api/vehicles/'.$this->updateId,[
             'name' => $this->vehicle['name'],
             'vehicle_brand_id' => $this->vehicle['brand'],
             'vehicle_category_id' => $this->vehicle['category'],
@@ -132,7 +130,7 @@ class Vehicle extends Component
     }
 
     public function deleteVehicle($id){
-        Http::delete('http://10.44.16.100:8080/api/vehicles/'.$id);
+        Http::withToken('1|bCbuW5HR50s46gNyOM3arOtjFeeOSqi4zvPPDQXd')->delete('http://10.44.16.11:8080/api/vehicles/'.$id);
     }
 
     public function render()

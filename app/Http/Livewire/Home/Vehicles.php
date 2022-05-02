@@ -14,5 +14,6 @@ class Vehicles extends Component
         // $vehicleList = Vehicle::all();
         // dd($vehicleList);
         return view('livewire.home.vehicles', ['vehicleList' => $vehicleList]);
+        // withToken('1|bCbuW5HR50s46gNyOM3arOtjFeeOSqi4zvPPDQXd')->
     }
 }

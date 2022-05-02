@@ -3,6 +3,7 @@
 namespace App\Http\Livewire\Admin;
 
 use App\Models\User as ModelsUser;
+use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 
 class User extends Component
@@ -30,7 +31,7 @@ class User extends Component
     public function render()
     {
         return view('livewire.admin.user',[
-            'users' => ModelsUser::all(),
+            'users' => ModelsUser::where('id', '!=', Auth::id())->get()
         ]);
     }
 }

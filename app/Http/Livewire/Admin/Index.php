@@ -13,7 +13,7 @@ class Index extends Component
     {
         return view('livewire.admin.index',[
             'users' => User::count(),
-            'vehicles' => count(Http::get('http://10.44.16.100:8080/api/vehicles')->json()),
+            'vehicles' => count(Http::get('http://10.44.16.11:8080/api/vehicles')->json()),
             'bookings' => Reservation::count(),
             'bookingData' => Reservation::orderBy('id', 'desc')->get()->take(5),
         ]);
