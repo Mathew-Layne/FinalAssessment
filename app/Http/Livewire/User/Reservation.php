@@ -11,7 +11,7 @@ class Reservation extends Component
     public function render()
     {
         return view('livewire.user.reservation',[
-            'bookingData' => ModelsReservation::where('user_id', Auth::id())->get(),
+            'bookingData' => ModelsReservation::where('user_id', Auth::id())->with('booking')->get(),
         ]);
     }
 }

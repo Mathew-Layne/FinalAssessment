@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire\Home;
 
+use App\Models\Booking;
 use App\Models\RentedAddon;
 use App\Models\Reservation;
 use App\Models\User;
@@ -38,10 +39,17 @@ class Checkout extends Component
             'email' => $this->user['email'],
         ]);   
 
+        
+        $reserve = Reservation::where('user_id', Auth::id())->where('cart_status', 'Cart')->first();
+        
+        $bookings = new Booking();
+        $bookings->reservation_id = $reserve->id;
+        $bookings->total = $this->intval * $this->addonSum + $this->intval * $reserve->vehicle->price;
+        $bookings->save();
+        
         Reservation::where('user_id', Auth::id())->where('cart_status', 'Cart')->update([
             'cart_status' => 'Booked'
-        ]); 
-        
+        ]);         
         
         return redirect('/');
 

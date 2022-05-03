@@ -18,7 +18,7 @@ class Reservation extends Component
 
         $this->bookingDetails = true;
         $this->reserveId = $id;  
-        $reserve = ModelsReservation::where('id', $id)->first(); 
+        $reserve = ModelsReservation::where('id', $id)->with('booking')->first(); 
         $this->vehicleId = $reserve->vehicle_id;
 
     }
