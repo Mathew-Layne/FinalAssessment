@@ -1,37 +1,37 @@
 <div>
     <div class="bg-gray-100">
-        <header class="w-full h-screen bg-[url('/img/homebg.jpeg')] bg-cover bg-center" style="clip-path: polygon(0 0, 100% 0%, 100% 75%, 50% 90%, 0 75%);">
+        <header class="w-full h-screen bg-cover bg-center" style="clip-path: polygon(0 0, 100% 0%, 100% 75%, 50% 90%, 0 75%); background-image: url('/img/homebg.jpeg');">
             <x-navbar/>
             <div class="h-[90%] w-full bg-black bg-opacity-80 overflow-hidden flex justify-center items-center" >
                
-                <div class="text-center mb-12">
+                <div class="text-center mb-12 px-5">
                     <div>
                         <h1 class="text-white font-bold text-6xl">Jamaica's #1 Car Rental</h1>
                         <h1 class="text-white font-bold text-lg">Cheapest car rental rates island wide</h1>
                     </div>
                     <div class="mt-10">
                         <form class="md:flex" wire:submit.prevent="search()">
-                            <div class="mx-2">
-                                <input type="date" min="{{ date('Y-m-d') }}">
-                                <label class="text-gray-200 block md:text-left text-sm mt-2" for="">PICK-UP DATE</label>
+                            <div class="mx-2 sm:mb-0 mb-3">
+                                <input class="w-full md:w-44" type="date" min="{{ date('Y-m-d') }}">
+                                <label class="text-gray-200 block md:text-left text-sm md:mt-2" for="">PICK-UP DATE</label>
                             </div>
     
-                            <div class="mx-2">
-                                <input type="date" min="{{ date('Y-m-d') }}">
-                                <label class="text-gray-200 block md:text-left text-sm mt-2" for="">DROP-OFF DATE</label>
+                            <div class="mx-2 sm:mb-0 mb-3">
+                                <input class="w-full md:w-44" type="date" min="{{ date('Y-m-d') }}">
+                                <label class="text-gray-200 block md:text-left text-sm md:mt-2" for="">DROP-OFF DATE</label>
                             </div>
     
-                            <div class="mx-2">
-                                <select wire:model="vhclSearch">
+                            <div class="mx-2 sm:mb-0 mb-3">
+                                <select class="w-full md:w-44" wire:model="vhclSearch">
                                     <option value="">Select Vehicle Type</option>
                                     @foreach($categories as $cat)
                                     <option value="{{ $cat['id'] }}">{{ $cat['name'] }}</option>
                                     @endforeach
                                 </select>
-                                <label class="text-gray-200 block md:text-left text-sm mt-2" for="">VEHICLE TYPE</label>
+                                <label class="text-gray-200 block md:text-left text-sm md:mt-2" for="">VEHICLE TYPE</label>
                             </div>
                             <div class="mx-2">
-                               <button class="bg-red-600 text-white py-2 px-8 border-r-4 border-gray-500 font-bold">FIND IT NOW</button>
+                               <button class="bg-red-600 w-full md:w-48 text-white py-2 px-8 border-r-4 border-gray-500 font-bold">FIND IT NOW</button>
                             </div>
                         </form>
                     </div>

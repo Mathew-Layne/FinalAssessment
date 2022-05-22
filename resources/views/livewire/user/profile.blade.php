@@ -94,7 +94,7 @@
                                         <label class="block uppercase text-blueGray-600 text-xs font-bold mb-2">
                                             Password
                                         </label>
-                                        <input type="password" value="" placeholder="Password"
+                                        <input type="text" placeholder="Enter Password"
                                             class="border-0 px-3 py-3 text-black placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                                             autocomplete="off"
                                             wire:model="profile.password">

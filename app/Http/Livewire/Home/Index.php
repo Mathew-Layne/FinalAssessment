@@ -3,6 +3,7 @@
 namespace App\Http\Livewire\Home;
 
 use App\Models\Vehicle;
+use App\Models\VehicleCategory;
 use Illuminate\Support\Facades\Http;
 use Livewire\Component;
 
@@ -23,7 +24,8 @@ class Index extends Component
 
         return view('livewire.home.index',[
             'features' => Vehicle::orderBy('created_at', 'desc')->get()->take(3),
-            'categories' => Http::withToken('1|bCbuW5HR50s46gNyOM3arOtjFeeOSqi4zvPPDQXd')->get('http://10.44.16.11:8080/api/categories')->json(),
+            'categories' => VehicleCategory::all(),
+            // 'categories' => Http::withToken('1|bCbuW5HR50s46gNyOM3arOtjFeeOSqi4zvPPDQXd')->get('http://10.44.16.36:8080/api/categories')->json(),
         ]);
     }
 }

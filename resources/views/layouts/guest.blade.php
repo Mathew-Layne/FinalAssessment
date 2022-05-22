@@ -18,6 +18,9 @@
         {{-- <link href="https://kit-pro.fontawesome.com/releases/v5.15.4/css/pro.min.css" rel="stylesheet"> --}}
         <link rel="stylesheet" href="https://site-assets.fontawesome.com/releases/v6.1.1/css/all.css">
         <script src="//unpkg.com/alpinejs" defer></script>
+
+        <link rel="stylesheet" href="vendor/@fortawesome/fontawesome-free/css/all.min.css" />
+        <link rel="shortcut icon" href="{{ url('img/fav.png') }}" type="image/x-icon">
         @livewireStyles
     </head>
     <body>

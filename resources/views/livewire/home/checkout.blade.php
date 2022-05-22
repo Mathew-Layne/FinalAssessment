@@ -2,7 +2,7 @@
     <div class="bg-gray-100">
         <header class="w-full h-96 bg-[url('/img/homebg.jpeg')] bg-cover bg-center" style="clip-path: polygon(0 0, 100% 0%, 100% 85%, 50% 100%, 0 85%);">
             <x-navbar/>
-            <div class="h-[90%] w-full bg-black bg-opacity-80 overflow-hidden flex justify-center items-center" >
+            <div class="h-full w-full bg-black bg-opacity-80 overflow-hidden flex justify-center items-center" >
                
                 <div class="text-center mb-12">
                     <div>
@@ -14,9 +14,9 @@
         </header>
         
         <section class="w-full flex justify-center my-20">
-            <div class="w-10/12 gap-5 flex">
+            <div class="md:w-10/12 gap-5 md:flex">
                 
-                    <div class="w-4/6 p-5 bg-white">
+                    <div class="md:w-4/6 w-full mb-5 md:mb-0 p-5 bg-white">
                         
                             <div class="w-full text-center bg-[url('/img/lines.jpg')] py-5">
                                 <h1 class="font-bold text-3xl">Checkout Details</h1>
@@ -41,7 +41,7 @@
                                 <div class=" mb-5">
                                     <label class="font-bold text-sm" for="">Phone Number</label>
                                     <input class="w-full bg-gray-200 border-none" 
-                                        placeholder="Enter Phone Number" type="tel" wire:model="user.phone">
+                                        placeholder="Enter Phone Number" type="number" wire:model="user.phone">
                                         @error("user.phone")<span class="text-xs text-red-600">{{ $message }}</span>@enderror
 
                                 </div>
@@ -56,7 +56,7 @@
                                 <button wire:click="reserveNow()" class="w-full bg-red-500 border-r-8 border-gray-600 text-white py-3">Reserve Now</button>
                             </form>
                             
-                            <div class="drop-shadow-xl p-5">
+                            <div class="drop-shadow-xl p-5 w-full">
                                 <h1 class="text-xl font-bold mb-2">Vehicle Details</h1>
                                 <div class="">
                                     <div class="flex justify-between">
@@ -132,7 +132,7 @@
 
                     
 
-                    <div class="w-2/6">
+                    <div class="md:w-2/6 w-full">
                         <div class="bg-white mb-5 p-5 drop-shadow-xl">
                             <h1 class="text-red-500 font-extrabold text-2xl mb-2">Pay Now</h1> 
                             <div class="flex justify-between mb-1">
@@ -145,11 +145,11 @@
                             </div>
                             <div class="flex justify-between mb-1">
                                 <h1 class="text-gray-500 font-bold">Addon:</h1>
-                                <span class="font-bold">${{ $rented ? $rented * $days : 0 }}.00</span>
+                                <span class="font-bold">${{ $rented * $days }}.00</span>
                             </div>
                             <div class="flex justify-between border-t-2 border-gray-600 pt-2">
                                 <h1 class="font-bold">Total:</h1>
-                                <span class="text-xl font-extrabold text-red-500">${{ $rented ? $days * $reserve->vehicle->price + $rented * $days : $days * $reserve->vehicle->price }}.00</span>
+                                <span class="text-xl font-extrabold text-red-500">${{ $days * $reserve->vehicle->price + $rented * $days }}.00</span>
                             </div>
                            
                         </div>

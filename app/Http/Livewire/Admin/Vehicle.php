@@ -28,7 +28,7 @@ class Vehicle extends Component
             'brandName' => 'required|unique:vehicle_brands,name'
         ]);
 
-        Http::withToken('1|bCbuW5HR50s46gNyOM3arOtjFeeOSqi4zvPPDQXd')->post('http://10.44.16.11:8080/api/brands',[
+        Http::post('https://mathew.fimijm.com/carrentalapi/api/brands',[
             'name' => $this->brandName
         ]);
 
@@ -45,7 +45,7 @@ class Vehicle extends Component
             'categoryName' => 'required|unique:vehicle_categories,name'
         ]);
 
-        Http::withToken('1|bCbuW5HR50s46gNyOM3arOtjFeeOSqi4zvPPDQXd')->post('http://10.44.16.11:8080/api/categories',[
+        Http::post('https://mathew.fimijm.com/carrentalapi/api/categories',[
             'name' => $this->categoryName
         ]);
 
@@ -71,7 +71,7 @@ class Vehicle extends Component
         $filename = $this->vehicle['img']->getClientOriginalName();        
         $filePath = $this->vehicle['img']->storeAs('public', $filename);
 
-        Http::withToken('1|bCbuW5HR50s46gNyOM3arOtjFeeOSqi4zvPPDQXd')->post('http://10.44.16.11:8080/api/vehicles',[
+        Http::post('https://mathew.fimijm.com/carrentalapi/api/vehicles',[
             'name' => $this->vehicle['name'],
             'vehicle_brand_id' => $this->vehicle['brand'],
             'vehicle_category_id' => $this->vehicle['category'],
@@ -90,7 +90,7 @@ class Vehicle extends Component
         $this->vhclUpdateForm = true;
         $this->updateId = $id;
 
-        $currentData = Http::withToken('1|bCbuW5HR50s46gNyOM3arOtjFeeOSqi4zvPPDQXd')->get('http://10.44.16.11:8080/api/vehicles/'.$id)->object();
+        $currentData = Http::get('https://mathew.fimijm.com/carrentalapi/api/vehicles/'.$id)->object();
         
             $this->vehicle['name'] = $currentData->name;
             $this->vehicle['brand'] = $currentData->vehicle_brand_id;
@@ -115,7 +115,7 @@ class Vehicle extends Component
             'vehicle.fuel' => 'required',
         ]);   
         // dd($this->vehicle['name']);
-        Http::withToken('1|bCbuW5HR50s46gNyOM3arOtjFeeOSqi4zvPPDQXd')->put('http://10.44.16.11:8080/api/vehicles/'.$this->updateId,[
+        Http::put('https://mathew.fimijm.com/carrentalapi/api/vehicles/'.$this->updateId,[
             'name' => $this->vehicle['name'],
             'vehicle_brand_id' => $this->vehicle['brand'],
             'vehicle_category_id' => $this->vehicle['category'],
@@ -130,7 +130,7 @@ class Vehicle extends Component
     }
 
     public function deleteVehicle($id){
-        Http::withToken('1|bCbuW5HR50s46gNyOM3arOtjFeeOSqi4zvPPDQXd')->delete('http://10.44.16.11:8080/api/vehicles/'.$id);
+        Http::delete('https://mathew.fimijm.com/carrentalapi/api/vehicles/'.$id);
     }
 
     public function render()

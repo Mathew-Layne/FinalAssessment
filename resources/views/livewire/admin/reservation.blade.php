@@ -130,9 +130,9 @@
                             <td class="px-4 py-3 text-sm">{{ $booked->reserve_status }}</td>                         
                             <td class="px-4 py-3 text-sm flex space-x-2">
                                 <button wire:click="viewDetails({{ $booked->id }})">Details</button>
-                                
+
                                 @if($booked->vehicle['status'] == "Unavailable")
-                                <button wire:click="returnVehicle({{ $booked->vehicle_id }})">Returned</button>
+                                <button wire:click="returnVehicle({{ $booked->vehicle_id }})">Return</button>
                                 @endif
                             </td>
                         </tr>

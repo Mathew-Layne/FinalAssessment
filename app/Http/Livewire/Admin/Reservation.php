@@ -14,16 +14,17 @@ class Reservation extends Component
     public $bookingDetails = false;
     public $reserveId, $vehicleId;
 
-    public function viewDetails($id){
+    public function viewDetails($id)
+    {
 
         $this->bookingDetails = true;
-        $this->reserveId = $id;  
-        $reserve = ModelsReservation::where('id', $id)->with('booking')->first(); 
+        $this->reserveId = $id;
+        $reserve = ModelsReservation::where('id', $id)->with('booking')->first();
         $this->vehicleId = $reserve->vehicle_id;
-
     }
 
-    public function approveBooking(){
+    public function approveBooking()
+    {
         Vehicle::where('id', $this->vehicleId)->update([
             'status' => 'Unavailable'
         ]);
@@ -35,7 +36,8 @@ class Reservation extends Component
         $this->bookingDetails = false;
     }
 
-    public function denyBooking(){
+    public function denyBooking()
+    {
         ModelsReservation::where('id', $this->reserveId)->update([
             'reserve_status' => 'Denied'
         ]);
@@ -43,7 +45,8 @@ class Reservation extends Component
         $this->bookingDetails = false;
     }
 
-    public function returnVehicle($id){
+    public function returnVehicle($id)
+    {
         Vehicle::where('id', $id)->update([
             'status' => 'Available'
         ]);
@@ -52,9 +55,9 @@ class Reservation extends Component
 
     public function render()
     {
-        return view('livewire.admin.reservation',[
+        return view('livewire.admin.reservation', [
             'bookings' => ModelsReservation::where('cart_status', 'Booked')->orderBy('id', 'desc')->paginate(8),
-            'reserveInfo' => ModelsReservation::where('id', $this->reserveId )->first(),
+            'reserveInfo' => ModelsReservation::where('id', $this->reserveId)->first(),
             'addons' => RentedAddon::where('reservation_id', $this->reserveId)->get(),
         ]);
     }

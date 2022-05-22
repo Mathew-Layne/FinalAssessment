@@ -12,14 +12,29 @@ use Livewire\Component;
 
 class Checkout extends Component
 {
-    public $user, $intval, $addonSum, $rentedAddon;
+    public $user, $intval, $addonSum, $rentedAddon, $reserve;
 
     public function mount(){
+        $this->reserve = Reservation::where('user_id', Auth::id())->where('cart_status', 'Cart')->orderBy('id', 'desc')->first();
+
         $userData = User::where('id', Auth::id())->first();
         $this->user['fname'] = $userData->first_name;
         $this->user['lname'] = $userData->last_name;
         $this->user['phone'] = $userData->phone;
         $this->user['email'] = $userData->email;
+
+        $day1 = date_create($this->reserve->pickup_date);
+        $day2 = date_create($this->reserve->dropoff_date);
+        $this->intval = $day1->diff($day2)->d;
+
+        $this->addonSum = 0;
+
+        $this->rentedAddon = RentedAddon::where('reservation_id', $this->reserve->id)->with('addon')->get();
+
+        // dd($rentedAddon);
+        foreach ($this->rentedAddon as $data) {
+            $this->addonSum += $data->addon->price;
+        }
        
     }
 
@@ -40,43 +55,26 @@ class Checkout extends Component
         ]);   
 
         
-        $reserve = Reservation::where('user_id', Auth::id())->where('cart_status', 'Cart')->first();
-        
         $bookings = new Booking();
-        $bookings->reservation_id = $reserve->id;
-        $bookings->total = $this->intval * $this->addonSum + $this->intval * $reserve->vehicle->price;
+        $bookings->reservation_id = $this->reserve->id;
+        $bookings->total = $this->intval * $this->addonSum + $this->intval * $this->reserve->vehicle->price;
         $bookings->save();
         
         Reservation::where('user_id', Auth::id())->where('cart_status', 'Cart')->update([
             'cart_status' => 'Booked'
         ]);         
         
-        return redirect('/');
+        return redirect()->route('dashboard');
 
     }
 
     public function render()
     {
-        $days = Reservation::where('user_id', Auth::id())->where('cart_status', 'Cart')->first();
-        $day1 = date_create($days->pickup_date);
-        $day2 = date_create($days->dropoff_date);
-        $this->intval = $day1->diff($day2)->d;
-
-        $addonSum = 0;
-        
-        $rentedAddon = RentedAddon::where('reservation_id', $days->id)->with('addon')->get();
-
-        // dd($rentedAddon);
-        foreach($rentedAddon as $data){
-            $this->addonSum += $data->addon->price;
-        }
-      
-
         return view('livewire.home.checkout', [
-            'reserve' => Reservation::where('user_id', Auth::id())->where('cart_status', 'Cart')->first(),
+            'reserve' => $this->reserve,
             'days' => $this->intval,
             'rented' => $this->addonSum,
-            'rentedAddons' => $rentedAddon,
+            'rentedAddons' => $this->rentedAddon,
         ]);
     }
 }
