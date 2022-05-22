@@ -98,7 +98,7 @@
                     @foreach ($features as $newCar)
                     @if ($newCar->status == "Unavailable")
                     <div class="lg:w-96 md:w-1/2 w-full mb-5 shadow-md hover:shadow-xl duration-200 hover:-translate-y-0.5 hover:translate-x-0.5 border border-gray-300">
-                        <div class="block relative h-60 rounded overflow-hidden border-2">
+                        <div class="block relative h-60 rounded overflow-hidden border-2 p-5">
                         <img alt="ecommerce" class="object-cover object-center w-full h-full block" src="{{ $newCar->img }}">
                         </div>
                         <div class="text-center py-2">
@@ -118,7 +118,7 @@
                     @else
                         
                     <div class="lg:w-96 md:w-1/2 w-full mb-5 shadow-md hover:shadow-xl duration-200 hover:-translate-y-0.5 hover:translate-x-0.5 border border-gray-300">
-                      <a href="{{ route('vehicle.details', $newCar->id) }}" class="block relative h-60 rounded overflow-hidden border-2">
+                      <a href="{{ route('vehicle.details', $newCar->id) }}" class="block relative h-60 rounded overflow-hidden border-2 p-8">
                       <img alt="ecommerce" class="object-cover object-center w-full h-full block" src="{{ $newCar->img }}">
                       </a>
                       <div class="text-center py-2">

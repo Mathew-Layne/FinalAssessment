@@ -1,6 +1,6 @@
 <div>
     <div class="bg-gray-100">
-        <header class="w-full h-96 bg-[url('/img/homebg.jpeg')] bg-cover bg-center" style="clip-path: polygon(0 0, 100% 0%, 100% 85%, 50% 100%, 0 85%);">
+        <header class="w-full h-[450px] md:h-96 bg-[url('/img/homebg.jpeg')] bg-cover bg-center" style="clip-path: polygon(0 0, 100% 0%, 100% 85%, 50% 100%, 0 85%);">
             <x-navbar/>
             <div class="h-full w-full bg-black bg-opacity-80 overflow-hidden flex justify-center items-center" >
                
@@ -26,7 +26,7 @@
                         @foreach ($vehicleList as $list)
                         @if($list['status'] == "Unavailable")
                             <div class="lg:w-96 md:w-1/2 w-full mb-5 shadow-md hover:shadow-xl duration-200 hover:-translate-y-0.5 hover:translate-x-0.5 border border-gray-300">
-                                <a class="block relative h-60 rounded overflow-hidden border-2">
+                                <a class="block relative h-60 rounded overflow-hidden border-2 p-5">
                                 <img alt="ecommerce" class="object-cover object-center w-full h-full block" src="{{ $list['img'] }}">
                                 </a>
                                 <div class="text-center py-2">
@@ -46,8 +46,8 @@
 
                             @else
 
-                            <div class="lg:w-96 md:w-1/2 w-full mb-5 shadow-md hover:shadow-xl duration-200 hover:-translate-y-0.5 hover:translate-x-0.5 border border-gray-300">
-                                <a href="{{ route('vehicle.details', $list['id']) }}" class="block relative h-60 rounded overflow-hidden border-2">
+                            <div class="lg:w-96 md:w-1/2 w-full mb-5 shadow-md hover:shadow-xl duration-200 hover:-translate-y-0.5 hover:translate-x-0.5 border  border-gray-300">
+                                <a href="{{ route('vehicle.details', $list['id']) }}" class="block relative h-60 p-5 rounded overflow-hidden border-2">
                                 <img alt="ecommerce" class="object-cover object-center w-full h-full block" src="{{ $list['img'] }}">
                                 </a>
                                 <div class="text-center py-2">

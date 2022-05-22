@@ -683,9 +683,6 @@ select {
 .z-20 {
   z-index: 20;
 }
-.z-30 {
-  z-index: 30;
-}
 .m-auto {
   margin: auto;
 }
@@ -879,11 +876,11 @@ select {
 .h-5 {
   height: 1.25rem;
 }
-.h-96 {
-  height: 24rem;
+.h-\[80\%\] {
+  height: 80%;
 }
-.h-\[90\%\] {
-  height: 90%;
+.h-full {
+  height: 100%;
 }
 .h-1 {
   height: 0.25rem;
@@ -891,11 +888,11 @@ select {
 .h-screen {
   height: 100vh;
 }
-.h-full {
-  height: 100%;
-}
 .h-6 {
   height: 1.5rem;
+}
+.h-96 {
+  height: 24rem;
 }
 .h-8 {
   height: 2rem;
@@ -911,6 +908,9 @@ select {
 }
 .h-11 {
   height: 2.75rem;
+}
+.h-\[90\%\] {
+  height: 90%;
 }
 .h-60 {
   height: 15rem;
@@ -929,6 +929,62 @@ select {
 }
 .h-20 {
   height: 5rem;
+}
+.h-\[0\%\] {
+  height: 0%;
+}
+.h-\[70\%\] {
+  height: 70%;
+}
+.h-5\/6 {
+  height: 83.333333%;
+}
+.h-max {
+  height: -webkit-max-content;
+  height: -moz-max-content;
+  height: max-content;
+}
+.h-\[\] {
+  height: ;
+}
+.h-\[9\] {
+  height: 9;
+}
+.h-\[90\] {
+  height: 90;
+}
+.h-\[1\] {
+  height: 1;
+}
+.h-\[3\] {
+  height: 3;
+}
+.h-\[300\] {
+  height: 300;
+}
+.h-\[300p\] {
+  height: 300p;
+}
+.h-\[300px\] {
+  height: 300px;
+}
+.h-\[00px\] {
+  height: 00px;
+}
+.h-\[600px\] {
+  height: 600px;
+}
+.h-\[0px\] {
+  height: 0px;
+}
+.h-\[480px\] {
+  height: 480px;
+}
+.h-\[450px\] {
+  height: 450px;
+}
+.max-h-screen {
+  max-height: 100vh;
 }
 .min-h-screen {
   min-height: 100vh;
@@ -950,9 +1006,6 @@ select {
 }
 .w-6 {
   width: 1.5rem;
-}
-.w-5\/12 {
-  width: 41.666667%;
 }
 .w-8 {
   width: 2rem;
@@ -981,14 +1034,8 @@ select {
 .w-4 {
   width: 1rem;
 }
-.w-10\/12 {
-  width: 83.333333%;
-}
 .w-4\/6 {
   width: 66.666667%;
-}
-.w-2\/6 {
-  width: 33.333333%;
 }
 .w-24 {
   width: 6rem;
@@ -1010,9 +1057,6 @@ select {
 }
 .w-40 {
   width: 10rem;
-}
-.w-11\/12 {
-  width: 91.666667%;
 }
 .min-w-0 {
   min-width: 0px;
@@ -1374,27 +1418,17 @@ select {
   --tw-bg-opacity: 1;
   background-color: rgb(250 204 21 / var(--tw-bg-opacity));
 }
-.bg-red-900 {
-  --tw-bg-opacity: 1;
-  background-color: rgb(127 29 29 / var(--tw-bg-opacity));
-}
 .bg-opacity-80 {
   --tw-bg-opacity: 0.8;
+}
+.bg-opacity-90 {
+  --tw-bg-opacity: 0.9;
 }
 .bg-opacity-75 {
   --tw-bg-opacity: 0.75;
 }
 .bg-opacity-50 {
   --tw-bg-opacity: 0.5;
-}
-.bg-opacity-90 {
-  --tw-bg-opacity: 0.9;
-}
-.bg-opacity-60 {
-  --tw-bg-opacity: 0.6;
-}
-.bg-opacity-0 {
-  --tw-bg-opacity: 0;
 }
 .bg-\[url\(\'\/img\/homebg\.jpeg\'\)\] {
   background-image: url('/img/homebg.jpeg');
@@ -1439,6 +1473,12 @@ select {
 }
 .p-10 {
   padding: 2.5rem;
+}
+.p-40 {
+  padding: 10rem;
+}
+.p-8 {
+  padding: 2rem;
 }
 .px-4 {
   padding-left: 1rem;
@@ -1524,6 +1564,10 @@ select {
   padding-top: 5rem;
   padding-bottom: 5rem;
 }
+.py-40 {
+  padding-top: 10rem;
+  padding-bottom: 10rem;
+}
 .pt-8 {
   padding-top: 2rem;
 }
@@ -1577,6 +1621,12 @@ select {
 }
 .pl-4 {
   padding-left: 1rem;
+}
+.pb-80 {
+  padding-bottom: 20rem;
+}
+.pb-40 {
+  padding-bottom: 10rem;
 }
 .text-left {
   text-align: left;
@@ -1778,9 +1828,6 @@ select {
 }
 .opacity-100 {
   opacity: 1;
-}
-.opacity-90 {
-  opacity: 0.9;
 }
 .shadow-sm {
   --tw-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05);
@@ -2235,10 +2282,6 @@ select {
 }
 @media (min-width: 640px) {
 
-  .sm\:top-0 {
-    top: 0px;
-  }
-
   .sm\:-my-px {
     margin-top: -1px;
     margin-bottom: -1px;
@@ -2375,6 +2418,10 @@ select {
     display: flex;
   }
 
+  .md\:h-96 {
+    height: 24rem;
+  }
+
   .md\:h-10 {
     height: 2.5rem;
   }
@@ -2409,6 +2456,10 @@ select {
     width: 66.666667%;
   }
 
+  .md\:w-10\/12 {
+    width: 83.333333%;
+  }
+
   .md\:w-4\/6 {
     width: 66.666667%;
   }
@@ -2417,28 +2468,16 @@ select {
     width: 33.333333%;
   }
 
-  .md\:w-4\/12 {
-    width: 33.333333%;
-  }
-
-  .md\:w-40 {
-    width: 10rem;
-  }
-
-  .md\:w-full {
-    width: 100%;
+  .md\:w-44 {
+    width: 11rem;
   }
 
   .md\:w-48 {
     width: 12rem;
   }
 
-  .md\:w-44 {
-    width: 11rem;
-  }
-
-  .md\:w-10\/12 {
-    width: 83.333333%;
+  .md\:w-4\/12 {
+    width: 33.333333%;
   }
 
   .md\:max-w-md {
@@ -2478,17 +2517,8 @@ select {
     background-color: rgb(0 0 0 / var(--tw-bg-opacity));
   }
 
-  .md\:bg-pink-500 {
-    --tw-bg-opacity: 1;
-    background-color: rgb(236 72 153 / var(--tw-bg-opacity));
-  }
-
   .md\:bg-opacity-80 {
     --tw-bg-opacity: 0.8;
-  }
-
-  .md\:bg-opacity-90 {
-    --tw-bg-opacity: 0.9;
   }
 
   .md\:pl-16 {
